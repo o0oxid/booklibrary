@@ -1,11 +1,9 @@
 package com.mycompany.app;
 
-import com.mycompany.app.catalog.CatalogEntryAbstract;
-import com.mycompany.app.catalog.CatalogEntryBook;
-import com.mycompany.app.catalog.CatalogEntryMagazine;
-import com.mycompany.app.catalog.CatalogStorageInMemoryImpl;
+import com.mycompany.app.catalog.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,25 +14,24 @@ public class App
 {
     public static void main( String[] args )
     {
-        CatalogStorageInMemoryImpl catalog = new CatalogStorageInMemoryImpl();
+        CatalogStorageInterface<CatalogEntryBook> bookCatalog = new CatalogBookStorageInMemory<>();
         CatalogEntryBook book = new CatalogEntryBook();
-
         book.setTitle("Harry Potter and the Sorcerer's Stone");
-        ArrayList<String> authors = new ArrayList<>();
+        List<String> authors = new ArrayList<>();
         authors.add("J. K. Rowling");
         book.setAuthors(authors);
+        bookCatalog.add(book);
 
+        CatalogStorageInterface<CatalogEntryMagazine> magazineCatalog = new CatalogBookStorageInMemory<>();
         CatalogEntryMagazine magazine = new CatalogEntryMagazine();
         magazine.setTitle("Car");
         magazine.setCountry("United Kingdom");
 
-
-        catalog.add(book);
-        catalog.add(magazine);
+        magazineCatalog.add(magazine);
 
         CatalogEntryBook lookup = new CatalogEntryBook();
         lookup.setTitle("Harry Potter");
-        Set<CatalogEntryAbstract> result = catalog.lookup(lookup);
+        Set<CatalogEntryBook> result = bookCatalog.lookup(lookup);
         System.out.print(result);
     }
 }

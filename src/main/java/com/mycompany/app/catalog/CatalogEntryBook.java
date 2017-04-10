@@ -1,38 +1,30 @@
 package com.mycompany.app.catalog;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.org.apache.xml.internal.resolver.CatalogEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 /**
  * Created by okhoruzhenko on 3/27/17.
  */
 
-public class CatalogEntryBook extends CatalogEntryAbstract {
+public class CatalogEntryBook extends CatalogEntryAbstract implements Matchable<CatalogEntryBook> {
     private int isbn;
     private String publisher;
     private Date publishDate;
     private String summary;
-    private ArrayList<String> tags;
-    private ArrayList<String> authors;
+    private List<String> tags;
+    private List<String> authors;
 
 
     @Override
-    public boolean matches(CatalogEntryAbstract cea) {
-        try {
-            return matchesUnsafe(cea);
-        } catch (NoSuchMethodException e) {}
-        catch (ClassCastException e) {}
-        return false;
-    }
-
-    public boolean matchesUnsafe(CatalogEntryAbstract cea) throws NoSuchMethodException, ClassCastException {
-        if (cea == this) {
+    public boolean matches(CatalogEntryBook entry) {
+        if (entry == this) {
             return true;
         }
-
-        CatalogEntryBook entry = (CatalogEntryBook) cea;
 
         if (entry.getTitle() != null) {
             if (!this.getTitle().contains(entry.getTitle())) {
@@ -95,19 +87,19 @@ public class CatalogEntryBook extends CatalogEntryAbstract {
         this.summary = summary;
     }
 
-    public ArrayList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 
-    public ArrayList<String> getAuthors() {
+    public List<String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(ArrayList<String> authors) {
+    public void setAuthors(List<String> authors) {
         this.authors = authors;
     }
 }
