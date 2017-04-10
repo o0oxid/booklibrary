@@ -14,7 +14,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        CatalogStorageInterface<CatalogEntryBook> bookCatalog = new CatalogBookStorageInMemory<>();
+        CatalogStorageInterface<CatalogEntryBook> bookCatalog = new CatalogBookStorageInMemory();
         CatalogEntryBook book = new CatalogEntryBook();
         book.setTitle("Harry Potter and the Sorcerer's Stone");
         List<String> authors = new ArrayList<>();
@@ -22,7 +22,7 @@ public class App
         book.setAuthors(authors);
         bookCatalog.add(book);
 
-        CatalogStorageInterface<CatalogEntryMagazine> magazineCatalog = new CatalogBookStorageInMemory<>();
+        CatalogStorageInterface<CatalogEntryMagazine> magazineCatalog = new CatalogBookStorageInMemory();
         CatalogEntryMagazine magazine = new CatalogEntryMagazine();
         magazine.setTitle("Car");
         magazine.setCountry("United Kingdom");
