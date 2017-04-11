@@ -1,9 +1,5 @@
 package com.mycompany.app.catalog;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.org.apache.xml.internal.resolver.CatalogEntry;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -27,19 +23,19 @@ public class CatalogEntryBook extends CatalogEntryAbstract implements Matchable<
         }
 
         if (entry.getTitle() != null) {
-            if (!this.getTitle().contains(entry.getTitle())) {
+            if (!this.getTitle().toLowerCase().contains(entry.getTitle().toLowerCase())) {
                 return false;
             }
         }
 
         if (entry.getPublisher() != null) {
-            if (!entry.getPublisher().contains(this.getPublisher())) {
+            if (!entry.getPublisher().toLowerCase().contains(this.getPublisher().toLowerCase())) {
                 return false;
             }
         }
 
         if (entry.getSummary() != null) {
-            if (!entry.getSummary().contains(this.getSummary())) {
+            if (!entry.getSummary().toLowerCase().contains(this.getSummary().toLowerCase())) {
                 return false;
             }
         }

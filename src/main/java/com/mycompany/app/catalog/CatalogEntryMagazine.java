@@ -22,13 +22,13 @@ public class CatalogEntryMagazine extends CatalogEntryAbstract implements Matcha
         }
 
         if (entry.getTitle() != null) {
-            if (!this.getTitle().contains(entry.getTitle())) {
+            if (!this.getTitle().toLowerCase().contains(entry.getTitle().toLowerCase())) {
                 return false;
             }
         }
 
         if (entry.getCountry() != null) {
-            if (!this.getCountry().contains(entry.getCountry())) {
+            if (!this.getCountry().toLowerCase().contains(entry.getCountry().toLowerCase())) {
                 return false;
             }
         }
