@@ -3,7 +3,7 @@ package com.mycompany.app.catalog;
 /**
  * Created by okhoruzhenko on 3/27/17.
  */
-public class CatalogEntryMagazine extends CatalogEntryAbstract {
+public class CatalogEntryMagazine extends CatalogEntryAbstract implements Matchable<CatalogEntryMagazine>{
     private int series;
     private String country;
 
@@ -16,22 +16,10 @@ public class CatalogEntryMagazine extends CatalogEntryAbstract {
     }
 
     @Override
-    public boolean matches(CatalogEntryAbstract cea) {
-        try {
-            return matchesUnsafe(cea);
-        } catch (NoSuchMethodException e) {}
-        catch (ClassCastException e) {}
-        finally {
-            return false;
-        }
-    }
-
-    public boolean matchesUnsafe(CatalogEntryAbstract cea) throws NoSuchMethodException, ClassCastException {
-        if (cea == this) {
+    public boolean matches(CatalogEntryMagazine entry) {
+        if (entry == this) {
             return true;
         }
-
-        CatalogEntryMagazine entry = (CatalogEntryMagazine) cea;
 
         if (entry.getTitle() != null) {
             if (!this.getTitle().contains(entry.getTitle())) {

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * Created by okhoruzhenko on 4/9/17.
  */
-public abstract class CatalogStorageInMemoryAbstract<T extends CatalogEntryAbstract> implements CatalogStorageInterface<T> {
+public abstract class CatalogStorageInMemoryAbstract<T extends CatalogEntryAbstract> implements CatalogStorage<T> {
     protected ArrayList<T> catalog = new ArrayList<>();
 
     public void add(T entry) {
