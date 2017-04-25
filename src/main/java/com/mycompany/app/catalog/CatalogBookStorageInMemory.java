@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * Created by okhoruzhenko on 3/27/17.
  */
 public class CatalogBookStorageInMemory implements CatalogStorage<CatalogEntryBook>  {
-    protected Collection<CatalogEntryBook> catalog;
+    protected final Collection<CatalogEntryBook> catalog;
 
     public CatalogBookStorageInMemory(Collection<CatalogEntryBook> catalog) {
         this.catalog = catalog;
@@ -30,7 +30,7 @@ public class CatalogBookStorageInMemory implements CatalogStorage<CatalogEntryBo
     @Override
     public Set<CatalogEntryBook> lookup(final String text) {
         Set<CatalogEntryBook> result = catalog.stream()
-                .filter(e -> e.getTitle().matches(text))
+                .filter(e -> e.getTitle().toLowerCase().contains(text.toLowerCase()))
                 .collect(Collectors.toSet());
         return result;
     }

@@ -1,15 +1,28 @@
 package com.mycompany.app.subscriber;
 
-import java.io.Serializable;
+import com.mycompany.app.catalog.CatalogEntryAbstract;
+import java.time.*;
+
+
+import java.util.concurrent.ConcurrentHashMap;
+
 
 /**
  * Created by okhoruzhenko on 3/26/17.
  */
-public abstract class SubscriberCatalogEntry implements Serializable{
+class SubscriberPerson extends SubscriberAbstract {
     private String name;
     private String lastName;
     private String address;
     private String phone;
+    
+    SubscriberPerson() {
+        this.orderList = ConcurrentHashMap.newKeySet();
+    }
+
+    public boolean matches(SubscriberPerson subscriber) {
+        return (name.matches(subscriber.getName()) && lastName.matches(subscriber.getLastName()));
+    }
 
     public String getName() {
         return name;

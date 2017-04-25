@@ -5,11 +5,13 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 /**
  * Created by okhoruzhenko on 4/10/17.
  */
+
 public class CatalogMagazineStorageInMemory implements CatalogStorage<CatalogEntryMagazine>  {
-    protected Collection<CatalogEntryMagazine> catalog;
+    protected final Collection<CatalogEntryMagazine> catalog;
 
     public CatalogMagazineStorageInMemory(Collection<CatalogEntryMagazine> catalog) {
         this.catalog = catalog;
@@ -29,7 +31,7 @@ public class CatalogMagazineStorageInMemory implements CatalogStorage<CatalogEnt
     @Override
     public Set<CatalogEntryMagazine> lookup(final String text) {
         Set<CatalogEntryMagazine> result = catalog.stream()
-                .filter(e -> e.getTitle().matches(text))
+                .filter(e -> e.getTitle().toLowerCase().contains(text.toLowerCase()))
                 .collect(Collectors.toSet());
         return result;
     }

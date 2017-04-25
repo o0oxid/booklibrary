@@ -1,9 +1,11 @@
 package com.mycompany.app;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.mycompany.app.catalog.*;
+import com.mycompany.app.subscriber.SubscriberModule;
+import com.mycompany.app.subscriber.SubscriberServiceAPI;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,24 +16,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        CatalogStorage<CatalogEntryBook> bookCatalog = new CatalogBookStorageInMemory();
-        CatalogEntryBook book = new CatalogEntryBook();
-        book.setTitle("Harry Potter and the Sorcerer's Stone");
-        List<String> authors = new ArrayList<>();
-        authors.add("J. K. Rowling");
-        book.setAuthors(authors);
-        bookCatalog.add(book);
+        Injector injector = Guice.createInjector(new SubscriberModule());
+        SubscriberServiceAPI subscriberService = injector.getInstance(SubscriberServiceAPI.class);
 
-        CatalogStorage<CatalogEntryMagazine> magazineCatalog = new CatalogMagazineStorageInMemory();
-        CatalogEntryMagazine magazine = new CatalogEntryMagazine();
-        magazine.setTitle("Car");
-        magazine.setCountry("United Kingdom");
+        Set<CatalogEntryAbstract> result =  subscriberService.lookUpSubscriber("Harry Potter");
 
-        magazineCatalog.add(magazine);
-
-        CatalogEntryBook lookup = new CatalogEntryBook();
-        lookup.setTitle("Harry Potter");
-        Set<CatalogEntryBook> result = bookCatalog.lookup(lookup);
         System.out.print(result);
     }
 }
