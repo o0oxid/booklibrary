@@ -6,7 +6,6 @@ import com.mycompany.app.catalog.CatalogEntryMagazine;
 import com.mycompany.app.catalog.CatalogStorage;
 
 import javax.inject.Inject;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

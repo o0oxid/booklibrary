@@ -5,8 +5,10 @@ package com.mycompany.app.subscriber;
  */
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mycompany.app.catalog.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,10 +17,12 @@ public class SubscriberModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(SubscriberCatalog.class).to(SubscriberCatalogMemory.class);
+        //bind(SubscriberCatalog.class).to(SubscriberCatalogMongo.class);
     }
+
     @Provides
     CatalogStorage<CatalogEntryBook> providesCatalogStorageBook() {
-        CatalogStorage catalog = new CatalogBookStorageInMemory(ConcurrentHashMap.newKeySet());
+        CatalogStorage<CatalogEntryBook> catalog = new CatalogBookStorageInMemory(ConcurrentHashMap.newKeySet());
         CatalogEntryBook book = new CatalogEntryBook();
 
         book.setTitle("Harry Potter and the Sorcerer's Stone");
@@ -32,7 +36,7 @@ public class SubscriberModule extends AbstractModule {
 
     @Provides
     CatalogStorage<CatalogEntryMagazine> providesCatalogStorageMagazie() {
-        CatalogStorage catalog = new CatalogMagazineStorageInMemory(ConcurrentHashMap.newKeySet());
+        CatalogStorage<CatalogEntryMagazine> catalog = new CatalogMagazineStorageInMemory(ConcurrentHashMap.newKeySet());
         CatalogEntryMagazine magazine = new CatalogEntryMagazine();
 
         magazine.setTitle("Car");
@@ -40,5 +44,12 @@ public class SubscriberModule extends AbstractModule {
 
         catalog.add(magazine);
         return catalog;
+    }
+
+    @Provides
+    MongoCollection providesSubscribersMongoCollection() {
+        MongoClient mongoClient = new MongoClient("localhost");
+        MongoDatabase mongoDatabase = mongoClient.getDatabase("Library");
+        return mongoDatabase.getCollection("Subscribers");
     }
 }

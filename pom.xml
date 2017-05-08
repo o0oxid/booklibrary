@@ -21,6 +21,40 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.6</version>
+                <configuration>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.mycompany.app.ServerApplication</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <name>library-directory</name>
@@ -37,16 +71,41 @@
           <version>4.0-beta5</version>
       </dependency>
       <dependency>
+          <groupId>com.google.inject.extensions</groupId>
+          <artifactId>guice-servlet</artifactId>
+          <version>4.0-beta5</version>
+      </dependency>
+      <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.dropwizard</groupId>
-      <artifactId>dropwizard-core</artifactId>
-      <version>0.9.2</version>
-    </dependency>
+      </dependency>
+      <dependency>
+          <groupId>io.dropwizard</groupId>
+          <artifactId>dropwizard-core</artifactId>
+          <version>0.9.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>18.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.hubspot.dropwizard</groupId>
+          <artifactId>dropwizard-guice</artifactId>
+          <version>1.0.6.0</version>
+          <exclusions>
+              <exclusion>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-servlet</artifactId>
+              </exclusion>
+                <exclusion>
+                  <groupId>com.google.inject</groupId>
+                  <artifactId>guice</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
@@ -55,7 +114,7 @@
       <dependency>
       <!-- Note: core-annotations version x.y.0 is generally compatible with
       (identical to) version x.y.1, x.y.2, etc. -->
-      <groupId>com.fasterxml.jackson.core</groupId>
+          <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-annotations</artifactId>
           <version>${jackson.version}</version>
       </dependency>

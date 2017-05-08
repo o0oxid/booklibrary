@@ -20,8 +20,9 @@ class SubscriberPerson extends SubscriberAbstract {
         this.orderList = ConcurrentHashMap.newKeySet();
     }
 
-    public boolean matches(SubscriberPerson subscriber) {
-        return (name.matches(subscriber.getName()) && lastName.matches(subscriber.getLastName()));
+    public boolean matches(SubscriberAbstract subscriber) {
+        SubscriberPerson s = (SubscriberPerson) subscriber;
+        return (name.matches(s.getName()) && lastName.matches(s.getLastName()));
     }
 
     public String getName() {

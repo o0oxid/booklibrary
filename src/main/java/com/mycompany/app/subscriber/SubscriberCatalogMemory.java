@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 @Singleton
 class SubscriberCatalogMemory implements SubscriberCatalog {
-    Set<SubscriberAbstract> collection = new ConcurrentHashSet<>();
+    private Set<SubscriberAbstract> collection = new ConcurrentHashSet<>();
 
     public void add(SubscriberAbstract subscriber) {
         collection.add(subscriber);

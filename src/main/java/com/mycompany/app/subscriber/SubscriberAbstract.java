@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by okhoruzhenko on 4/19/17.
  */
-abstract class SubscriberAbstract implements Serializable {
+public abstract class SubscriberAbstract implements Serializable {
     protected Set<Order> orderList;
     public void setOrder(CatalogEntryAbstract entry) {
         Order o = new Order(entry, LocalDate.now(),LocalDate.now().plusDays(14));
