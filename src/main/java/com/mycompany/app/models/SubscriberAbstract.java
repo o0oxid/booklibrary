@@ -1,6 +1,4 @@
-package com.mycompany.app.subscriber;
-
-import com.mycompany.app.catalog.CatalogEntryAbstract;
+package com.mycompany.app.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,11 +14,11 @@ public abstract class SubscriberAbstract implements Serializable {
         orderList.add(o);
     }
     public void renewOrder(Order order, LocalDate date){
-        order.expireDate = date;
+        order.setExpireDate(date);
     }
     public void closeOrder(Order order) {
-        order.closeDate = LocalDate.now();
-        order.isClosed = true;
+        order.setCloseDate(LocalDate.now());
+        order.setClosed(true);
     }
     public abstract boolean matches(SubscriberAbstract subscriber);
 }

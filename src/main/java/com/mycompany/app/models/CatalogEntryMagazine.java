@@ -1,9 +1,11 @@
-package com.mycompany.app.catalog;
+package com.mycompany.app.models;
+
+import com.mycompany.app.catalog.Matchable;
 
 /**
  * Created by okhoruzhenko on 3/27/17.
  */
-public class CatalogEntryMagazine extends CatalogEntryAbstract implements Matchable<CatalogEntryMagazine>{
+public class CatalogEntryMagazine extends CatalogEntryAbstract implements Matchable<CatalogEntryMagazine> {
     private int series;
     private String country;
 

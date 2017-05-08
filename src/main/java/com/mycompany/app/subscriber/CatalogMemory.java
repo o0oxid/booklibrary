@@ -1,6 +1,7 @@
 package com.mycompany.app.subscriber;
 
 import com.google.inject.Singleton;
+import com.mycompany.app.models.SubscriberAbstract;
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
  * Created by okhoruzhenko on 4/20/17.
  */
 @Singleton
-class SubscriberCatalogMemory implements SubscriberCatalog {
+class CatalogMemory implements Catalog {
     private Set<SubscriberAbstract> collection = new ConcurrentHashSet<>();
 
     public void add(SubscriberAbstract subscriber) {

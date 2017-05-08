@@ -1,9 +1,11 @@
 package com.mycompany.app.subscriber;
 
-import com.mycompany.app.catalog.CatalogEntryAbstract;
-import com.mycompany.app.catalog.CatalogEntryBook;
-import com.mycompany.app.catalog.CatalogEntryMagazine;
-import com.mycompany.app.catalog.CatalogStorage;
+import com.mycompany.app.models.CatalogEntryAbstract;
+import com.mycompany.app.models.CatalogEntryBook;
+import com.mycompany.app.models.CatalogEntryMagazine;
+import com.mycompany.app.catalog.Catalog;
+import com.mycompany.app.models.SubscriberAbstract;
+import com.mycompany.app.models.SubscriberPerson;
 
 import javax.inject.Inject;
 import java.util.Set;
@@ -11,13 +13,13 @@ import java.util.Set;
 /**
  * Created by okhoruzhenko on 4/21/17.
  */
-public class SubscriberServiceAPI implements SubscriberService {
-    SubscriberCatalog subscribers;
-    CatalogStorage<CatalogEntryBook> books;
-    CatalogStorage<CatalogEntryMagazine> magazines;
+public class SubscriptionService implements Subscription {
+    com.mycompany.app.subscriber.Catalog subscribers;
+    Catalog<CatalogEntryBook> books;
+    Catalog<CatalogEntryMagazine> magazines;
 
     @Inject
-    public SubscriberServiceAPI(SubscriberCatalog subscribers, CatalogStorage<CatalogEntryBook> books, CatalogStorage<CatalogEntryMagazine> magazines) {
+    public SubscriptionService(com.mycompany.app.subscriber.Catalog subscribers, Catalog<CatalogEntryBook> books, Catalog<CatalogEntryMagazine> magazines) {
         this.subscribers = subscribers;
         this.books = books;
         this.magazines = magazines;

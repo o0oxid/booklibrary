@@ -1,6 +1,8 @@
 package com.mycompany.app;
 
 import com.mycompany.app.catalog.*;
+import com.mycompany.app.models.CatalogEntryBook;
+import com.mycompany.app.models.CatalogEntryMagazine;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -12,10 +14,10 @@ import java.util.Set;
 /**
  * Created by okhoruzhenko on 4/11/17.
  */
-public class CatalogStorageInMemoryTest {
+public class CatalogInMemoryTest {
     @Test
     public void CatalogBookStorageInMemory() {
-        CatalogStorage<CatalogEntryBook> bookCatalog = new CatalogBookStorageInMemory();
+        Catalog<CatalogEntryBook> bookCatalog = new CatalogBookInMemory();
         CatalogEntryBook book = new CatalogEntryBook();
         book.setTitle("Harry Potter and the Sorcerer's Stone");
         List<String> authors = new ArrayList<>();
@@ -32,7 +34,7 @@ public class CatalogStorageInMemoryTest {
 
     @Test
     public void CatalogMagazineStorageInMemory() {
-        CatalogStorage<CatalogEntryMagazine> magazineCatalog = new CatalogMagazineStorageInMemory();
+        Catalog<CatalogEntryMagazine> magazineCatalog = new CatalogMagazineInMemory();
         CatalogEntryMagazine magazine = new CatalogEntryMagazine();
         magazine.setTitle("Car");
         magazine.setCountry("UK");

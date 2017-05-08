@@ -1,4 +1,4 @@
-package com.mycompany.app.catalog;
+package com.mycompany.app.models;
 
 import java.io.Serializable;
 

@@ -1,5 +1,7 @@
 package com.mycompany.app.catalog;
 
+import com.mycompany.app.models.CatalogEntryMagazine;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -10,14 +12,14 @@ import java.util.stream.Collectors;
  * Created by okhoruzhenko on 4/10/17.
  */
 
-public class CatalogMagazineStorageInMemory implements CatalogStorage<CatalogEntryMagazine>  {
+public class CatalogMagazineInMemory implements Catalog<CatalogEntryMagazine> {
     protected final Collection<CatalogEntryMagazine> catalog;
 
-    public CatalogMagazineStorageInMemory(Collection<CatalogEntryMagazine> catalog) {
+    public CatalogMagazineInMemory(Collection<CatalogEntryMagazine> catalog) {
         this.catalog = catalog;
     }
 
-    public CatalogMagazineStorageInMemory() {
+    public CatalogMagazineInMemory() {
         catalog = new ArrayList<>();
     }
 

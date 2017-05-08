@@ -9,6 +9,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mycompany.app.catalog.*;
+import com.mycompany.app.models.CatalogEntryBook;
+import com.mycompany.app.models.CatalogEntryMagazine;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,13 +19,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SubscriberModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(SubscriberCatalog.class).to(SubscriberCatalogMemory.class);
-        //bind(SubscriberCatalog.class).to(SubscriberCatalogMongo.class);
+        bind(Catalog.class).to(CatalogMemory.class);
+        //bind(Catalog.class).to(CatalogMongo.class);
     }
 
     @Provides
-    CatalogStorage<CatalogEntryBook> providesCatalogStorageBook() {
-        CatalogStorage<CatalogEntryBook> catalog = new CatalogBookStorageInMemory(ConcurrentHashMap.newKeySet());
+    com.mycompany.app.catalog.Catalog<CatalogEntryBook> providesCatalogStorageBook() {
+        com.mycompany.app.catalog.Catalog<CatalogEntryBook> catalog = new CatalogBookInMemory(ConcurrentHashMap.newKeySet());
         CatalogEntryBook book = new CatalogEntryBook();
 
         book.setTitle("Harry Potter and the Sorcerer's Stone");
@@ -35,8 +38,8 @@ public class SubscriberModule extends AbstractModule {
     }
 
     @Provides
-    CatalogStorage<CatalogEntryMagazine> providesCatalogStorageMagazie() {
-        CatalogStorage<CatalogEntryMagazine> catalog = new CatalogMagazineStorageInMemory(ConcurrentHashMap.newKeySet());
+    com.mycompany.app.catalog.Catalog<CatalogEntryMagazine> providesCatalogStorageMagazie() {
+        com.mycompany.app.catalog.Catalog<CatalogEntryMagazine> catalog = new CatalogMagazineInMemory(ConcurrentHashMap.newKeySet());
         CatalogEntryMagazine magazine = new CatalogEntryMagazine();
 
         magazine.setTitle("Car");

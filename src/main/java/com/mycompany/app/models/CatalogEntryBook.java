@@ -1,4 +1,6 @@
-package com.mycompany.app.catalog;
+package com.mycompany.app.models;
+
+import com.mycompany.app.catalog.Matchable;
 
 import java.util.List;
 import java.util.Date;

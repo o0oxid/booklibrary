@@ -1,7 +1,4 @@
-package com.mycompany.app.subscriber;
-
-import com.mycompany.app.catalog.CatalogEntryAbstract;
-import java.time.*;
+package com.mycompany.app.models;
 
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,13 +7,13 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by okhoruzhenko on 3/26/17.
  */
-class SubscriberPerson extends SubscriberAbstract {
+public class SubscriberPerson extends SubscriberAbstract {
     private String name;
     private String lastName;
     private String address;
     private String phone;
     
-    SubscriberPerson() {
+    public SubscriberPerson() {
         this.orderList = ConcurrentHashMap.newKeySet();
     }
 
