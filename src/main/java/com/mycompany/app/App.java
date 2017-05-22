@@ -9,7 +9,7 @@ import com.mycompany.app.subscriber.SubscriptionService;
 import java.util.Set;
 
 /**
- * Hello world!
+ * hello world!
  *
  */
 public class App 

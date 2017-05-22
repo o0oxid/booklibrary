@@ -1,4 +1,4 @@
-package com.mycompany.app.restAPI;
+package com.mycompany.app.restEndpoints.hello;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -20,3 +20,4 @@ public class HelloResource {
         return message;
     }
 }
+

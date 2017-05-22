@@ -2,8 +2,10 @@ package com.mycompany.app;
 
 
 import com.hubspot.dropwizard.guice.GuiceBundle;
-import com.mycompany.app.restAPI.ServerConfiguration;
-import com.mycompany.app.restAPI.ServerModule;
+import com.mycompany.app.restEndpoints.ServerConfiguration;
+import com.mycompany.app.restEndpoints.hello.HelloModule;
+import com.mycompany.app.restEndpoints.subscriber.SubscriptionModule;
+import com.mycompany.app.subscriber.SubscriberModule;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -11,8 +13,10 @@ import io.dropwizard.setup.Environment;
 public class ServerApplication extends Application<ServerConfiguration> {
     @Override
     public void initialize(Bootstrap<ServerConfiguration> bootstrap) {
+        
         GuiceBundle<ServerConfiguration> guiceBundle = GuiceBundle.<ServerConfiguration>newBuilder()
-                .addModule(new ServerModule())
+                .addModule(new HelloModule())
+                .addModule(new SubscriptionModule())
                 .setConfigClass(ServerConfiguration.class)
                 .enableAutoConfig(getClass().getPackage().getName())
                 .build();
@@ -22,6 +26,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
     @Override
     public void run(ServerConfiguration configuration, Environment environment) throws Exception {
     }
+
     public static void main(String[] args) throws Exception {
         new ServerApplication().run(args);
     }
