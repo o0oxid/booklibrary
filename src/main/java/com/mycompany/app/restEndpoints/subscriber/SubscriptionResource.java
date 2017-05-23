@@ -17,7 +17,6 @@ import java.util.Optional;
  */
 @Path("api/v1/sub/register")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 public class SubscriptionResource {
     SubscriptionService service;
 
@@ -26,7 +25,7 @@ public class SubscriptionResource {
         this.service = service;
     }
 
-    @POST
+    @GET
     public SubscriberAbstract registerSubscriber(@QueryParam("name")  String name,
                                                  @QueryParam("lastname") String lastName,
                                                  @QueryParam("address") String address,
