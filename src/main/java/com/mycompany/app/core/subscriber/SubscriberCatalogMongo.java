@@ -1,11 +1,11 @@
-package com.mycompany.app.subscriber;
+package com.mycompany.app.core.subscriber;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.mongodb.client.MongoCollection;
 import java.util.Set;
 
-import com.mycompany.app.models.SubscriberAbstract;
+import com.mycompany.app.core.models.SubscriberAbstract;
 import org.bson.Document;
 
 
@@ -15,11 +15,11 @@ import org.bson.Document;
 
 
 @Singleton
-class CatalogMongo implements Catalog {
+class SubscriberCatalogMongo implements SubscriberCatalog {
 
     private MongoCollection<Document> collection;
     @Inject
-    public CatalogMongo(MongoCollection collection) {
+    public SubscriberCatalogMongo(MongoCollection collection) {
         this.collection = collection;
     }
     public void add(SubscriberAbstract subscriber) {

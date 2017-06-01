@@ -1,6 +1,6 @@
-package com.mycompany.app.catalog;
+package com.mycompany.app.core.catalog;
 
-import com.mycompany.app.models.CatalogEntryBook;
+import com.mycompany.app.core.models.CatalogEntryBook;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 /**
  * Created by okhoruzhenko on 3/27/17.
  */
-public class CatalogBookInMemory implements Catalog<CatalogEntryBook> {
+public class LibraryCatalogBookInMemory implements LibraryCatalog<CatalogEntryBook> {
     protected final Collection<CatalogEntryBook> catalog;
 
-    public CatalogBookInMemory(Collection<CatalogEntryBook> catalog) {
+    public LibraryCatalogBookInMemory(Collection<CatalogEntryBook> catalog) {
         this.catalog = catalog;
     }
 
-    public CatalogBookInMemory() {
+    public LibraryCatalogBookInMemory() {
         catalog = new ArrayList<>();
     }
 

@@ -1,11 +1,11 @@
-package com.mycompany.app.subscriber;
+package com.mycompany.app.core.subscriber;
 
-import com.mycompany.app.models.CatalogEntryAbstract;
-import com.mycompany.app.models.CatalogEntryBook;
-import com.mycompany.app.models.CatalogEntryMagazine;
-import com.mycompany.app.catalog.Catalog;
-import com.mycompany.app.models.SubscriberAbstract;
-import com.mycompany.app.models.SubscriberPerson;
+import com.mycompany.app.core.models.CatalogEntryAbstract;
+import com.mycompany.app.core.models.CatalogEntryBook;
+import com.mycompany.app.core.models.CatalogEntryMagazine;
+import com.mycompany.app.core.catalog.LibraryCatalog;
+import com.mycompany.app.core.models.SubscriberAbstract;
+import com.mycompany.app.core.models.SubscriberPerson;
 
 import javax.inject.Inject;
 import java.util.Set;
@@ -14,12 +14,12 @@ import java.util.Set;
  * Created by okhoruzhenko on 4/21/17.
  */
 public class SubscriptionService implements Subscription {
-    com.mycompany.app.subscriber.Catalog subscribers;
-    Catalog<CatalogEntryBook> books;
-    Catalog<CatalogEntryMagazine> magazines;
+    SubscriberCatalog subscribers;
+    LibraryCatalog<CatalogEntryBook> books;
+    LibraryCatalog<CatalogEntryMagazine> magazines;
 
     @Inject
-    public SubscriptionService(com.mycompany.app.subscriber.Catalog subscribers, Catalog<CatalogEntryBook> books, Catalog<CatalogEntryMagazine> magazines) {
+    public SubscriptionService(SubscriberCatalog subscribers, LibraryCatalog<CatalogEntryBook> books, LibraryCatalog<CatalogEntryMagazine> magazines) {
         this.subscribers = subscribers;
         this.books = books;
         this.magazines = magazines;

@@ -1,4 +1,4 @@
-package com.mycompany.app.restEndpoints.subscriber;
+package com.mycompany.app.resources.subscriber;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -6,22 +6,20 @@ import com.google.inject.name.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import com.mycompany.app.models.SubscriberAbstract;
-import com.mycompany.app.subscriber.SubscriptionService;
-
-import java.util.Optional;
+import com.mycompany.app.core.models.SubscriberAbstract;
+import com.mycompany.app.core.subscriber.Subscription;
 
 
 /**
  * Created by okhoruzhenko on 5/8/17.
  */
-@Path("api/v1/sub/register")
+@Path("api/v1/subscribers")
 @Produces(MediaType.APPLICATION_JSON)
 public class SubscriptionResource {
-    SubscriptionService service;
+    Subscription service;
 
     @Inject
-    public SubscriptionResource(@Named("SubscriptionService") SubscriptionService service) {
+    public SubscriptionResource(@Named("SubscriptionService") Subscription service) {
         this.service = service;
     }
 

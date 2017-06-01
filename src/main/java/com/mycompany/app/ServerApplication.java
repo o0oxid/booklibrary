@@ -2,10 +2,9 @@ package com.mycompany.app;
 
 
 import com.hubspot.dropwizard.guice.GuiceBundle;
-import com.mycompany.app.restEndpoints.ServerConfiguration;
-import com.mycompany.app.restEndpoints.hello.HelloModule;
-import com.mycompany.app.restEndpoints.subscriber.SubscriptionModule;
-import com.mycompany.app.subscriber.SubscriberModule;
+import com.mycompany.app.resources.ServerConfiguration;
+import com.mycompany.app.resources.hello.HelloModule;
+import com.mycompany.app.resources.subscriber.SubscriptionModule;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;

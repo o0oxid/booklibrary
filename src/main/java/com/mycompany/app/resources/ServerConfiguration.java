@@ -1,4 +1,4 @@
-package com.mycompany.app.restEndpoints;
+package com.mycompany.app.resources;
 
 /**
  * Created by okhoruzhenko on 5/3/17.

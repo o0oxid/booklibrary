@@ -1,13 +1,13 @@
-package com.mycompany.app.catalog;
+package com.mycompany.app.core.catalog;
 
-import com.mycompany.app.models.CatalogEntryAbstract;
+import com.mycompany.app.core.models.CatalogEntryAbstract;
 
 import java.util.Set;
 
 /**
  * Created by okhoruzhenko on 3/27/17.
  */
-public interface Catalog<T extends CatalogEntryAbstract> {
+public interface LibraryCatalog<T extends CatalogEntryAbstract> {
     void add(T entry);
     void remove(T entry);
     Set<T> lookup(String text);

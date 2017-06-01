@@ -2,9 +2,9 @@ package com.mycompany.app;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.mycompany.app.models.SubscriberAbstract;
-import com.mycompany.app.subscriber.SubscriberModule;
-import com.mycompany.app.subscriber.SubscriptionService;
+import com.mycompany.app.core.models.SubscriberAbstract;
+import com.mycompany.app.core.subscriber.SubscriberModule;
+import com.mycompany.app.core.subscriber.SubscriptionService;
 
 import java.util.Set;
 

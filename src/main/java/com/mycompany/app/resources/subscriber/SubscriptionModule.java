@@ -1,11 +1,10 @@
-package com.mycompany.app.restEndpoints.subscriber;
+package com.mycompany.app.resources.subscriber;
 
 import com.google.inject.*;
 
-import javax.inject.Named;
-
-import com.mycompany.app.subscriber.SubscriberModule;
-import com.mycompany.app.subscriber.SubscriptionService;
+import com.mycompany.app.core.subscriber.SubscriberModule;
+import com.mycompany.app.core.subscriber.SubscriptionService;
+import com.mycompany.app.core.subscriber.Subscription;
 
 /**
  * Created by okhoruzhenko on 5/19/17.
@@ -13,11 +12,12 @@ import com.mycompany.app.subscriber.SubscriptionService;
 public class SubscriptionModule implements Module {
     @Override
     public void configure(Binder binder) {
+
     }
 
     @Provides
-    @Named("SubscriptionService")
-    public SubscriptionService provideSubscriptionService() {
+    @Singleton
+    public Subscription provideSubscriptionService() {
         Injector injector = Guice.createInjector(new SubscriberModule());
         return injector.getInstance(SubscriptionService.class);
     }

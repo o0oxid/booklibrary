@@ -1,4 +1,4 @@
-package com.mycompany.app.restEndpoints.hello;
+package com.mycompany.app.resources.hello;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;

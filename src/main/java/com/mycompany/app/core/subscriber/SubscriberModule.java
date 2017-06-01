@@ -1,4 +1,4 @@
-package com.mycompany.app.subscriber;
+package com.mycompany.app.core.subscriber;
 
 /**
  * Created by okhoruzhenko on 4/20/17.
@@ -8,9 +8,9 @@ import com.google.inject.Provides;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mycompany.app.catalog.*;
-import com.mycompany.app.models.CatalogEntryBook;
-import com.mycompany.app.models.CatalogEntryMagazine;
+import com.mycompany.app.core.catalog.*;
+import com.mycompany.app.core.models.CatalogEntryBook;
+import com.mycompany.app.core.models.CatalogEntryMagazine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SubscriberModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(Catalog.class).to(CatalogMemory.class);
-        //bind(Catalog.class).to(CatalogMongo.class);
+        bind(SubscriberCatalog.class).to(SubscriberCatalogMemory.class);
+        //bind(SubscriberCatalog.class).to(SubscriberCatalogMongo.class);
     }
 
     @Provides
-    com.mycompany.app.catalog.Catalog<CatalogEntryBook> providesCatalogStorageBook() {
-        com.mycompany.app.catalog.Catalog<CatalogEntryBook> catalog = new CatalogBookInMemory(ConcurrentHashMap.newKeySet());
+    LibraryCatalog<CatalogEntryBook> providesCatalogStorageBook() {
+        LibraryCatalog<CatalogEntryBook> libraryCatalog = new LibraryCatalogBookInMemory(ConcurrentHashMap.newKeySet());
         CatalogEntryBook book = new CatalogEntryBook();
 
         book.setTitle("Harry Potter and the Sorcerer's Stone");
@@ -33,20 +33,20 @@ public class SubscriberModule extends AbstractModule {
         authors.add("J. K. Rowling");
         book.setAuthors(authors);
 
-        catalog.add(book);
-        return catalog;
+        libraryCatalog.add(book);
+        return libraryCatalog;
     }
 
     @Provides
-    com.mycompany.app.catalog.Catalog<CatalogEntryMagazine> providesCatalogStorageMagazie() {
-        com.mycompany.app.catalog.Catalog<CatalogEntryMagazine> catalog = new CatalogMagazineInMemory(ConcurrentHashMap.newKeySet());
+    LibraryCatalog<CatalogEntryMagazine> providesCatalogStorageMagazie() {
+        LibraryCatalog<CatalogEntryMagazine> libraryCatalog = new LibraryCatalogMagazineInMemory(ConcurrentHashMap.newKeySet());
         CatalogEntryMagazine magazine = new CatalogEntryMagazine();
 
         magazine.setTitle("Car");
         magazine.setCountry("United Kingdom");
 
-        catalog.add(magazine);
-        return catalog;
+        libraryCatalog.add(magazine);
+        return libraryCatalog;
     }
 
     @Provides
