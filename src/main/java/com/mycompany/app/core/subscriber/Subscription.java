@@ -10,6 +10,7 @@ import java.util.Set;
  */
 public interface Subscription {
     SubscriberAbstract registerNewSubscriber(String name, String lastName, String address, String phone);
+    SubscriberAbstract registerNewSubscriber(SubscriberAbstract subscriber);
     Set<SubscriberAbstract> lookUpSubscriber(String name, String lastName);
     void setOrder(SubscriberAbstract subscriber, CatalogEntryAbstract entry);
 }

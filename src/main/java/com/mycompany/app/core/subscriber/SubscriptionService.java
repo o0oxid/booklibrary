@@ -36,6 +36,11 @@ public class SubscriptionService implements Subscription {
         return s;
     }
 
+    public SubscriberAbstract registerNewSubscriber(SubscriberAbstract subscriber) {
+        subscribers.add(subscriber);
+        return subscriber;
+    }
+
     @Override
     public Set<SubscriberAbstract> lookUpSubscriber(String name, String lastName) {
         SubscriberPerson subscriber = new SubscriberPerson();

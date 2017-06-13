@@ -9,16 +9,18 @@ import com.mycompany.app.core.subscriber.Subscription;
 /**
  * Created by okhoruzhenko on 5/19/17.
  */
-public class SubscriptionModule implements Module {
+public class SubscriberResourceModule extends AbstractModule {
     @Override
-    public void configure(Binder binder) {
-
+    public void configure() {
+        install(new SubscriberModule());
+        bind(Subscription.class).to(SubscriptionService.class).in(Singleton.class);
     }
 
-    @Provides
+    /*@Provides
     @Singleton
     public Subscription provideSubscriptionService() {
         Injector injector = Guice.createInjector(new SubscriberModule());
         return injector.getInstance(SubscriptionService.class);
-    }
+    }*/
+
 }

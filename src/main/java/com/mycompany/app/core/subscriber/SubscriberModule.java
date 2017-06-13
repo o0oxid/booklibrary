@@ -12,6 +12,7 @@ import com.mycompany.app.core.catalog.*;
 import com.mycompany.app.core.models.CatalogEntryBook;
 import com.mycompany.app.core.models.CatalogEntryMagazine;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,6 +23,7 @@ public class SubscriberModule extends AbstractModule {
         bind(SubscriberCatalog.class).to(SubscriberCatalogMemory.class);
         //bind(SubscriberCatalog.class).to(SubscriberCatalogMongo.class);
     }
+
 
     @Provides
     LibraryCatalog<CatalogEntryBook> providesCatalogStorageBook() {
